@@ -14,5 +14,11 @@ module.exports = {
             // Typescript
             { test: /\.tsx?$/, loader: "ts-loader" },
         ],
+        rules:[
+            {
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            }
+        ]
     },
 };

@@ -1,12 +1,14 @@
-import CreateArticleForm from "../components/Article/CreateArticleForm";
+import CreateArticleForm from "../CreateArticleForm";
 
-import { ArticleContextProvider } from "../store/article-context";
-
+import { ArticleContextProvider } from "../Store/article-context";
+import Layout from "../../Layout/Layout";
 const CreateArticlePage = () => {
     return (
+        <Layout>
         <ArticleContextProvider>
             <CreateArticleForm item={undefined}/>
         </ArticleContextProvider>
+        </Layout>
     )
 }
 

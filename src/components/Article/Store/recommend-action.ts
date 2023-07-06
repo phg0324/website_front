@@ -17,7 +17,8 @@ export const getRecommends = (param:string, token?:string) => {
 export const makeRecommend = async (id_str:string, token:string) => {
     const URL = '/recommend/'
     const id = +id_str
-    const response = POST(URL, { id:id }, createTokenHeader(token));
+    console.log(id)
+    const response = POST(URL, { articleId:id }, createTokenHeader(token));
     return response;
 }
 

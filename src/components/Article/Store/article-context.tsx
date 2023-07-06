@@ -5,8 +5,8 @@ type Props = { children?: React.ReactNode }
 type ArticleInfo = {
     articleId: number,
     memberNickname: string,
-    mainId: number,
     articleTitle: string,
+    articleType: string,
     articleBody: string,
     cratedAt: string,
     updatedAt?: string,
@@ -15,6 +15,7 @@ type ArticleInfo = {
 
 interface PostArticle {
     id? : string,
+    type : string,
     title: string,
     body: string
 }
@@ -65,6 +66,7 @@ export const ArticleContextProvider:React.FC<Props> = (props) => {
         const pages:number = data?.data.totalPages;
         setPage(page);
         setTotalPages(pages);
+        console.log(page)
         setIsSuccess(true);
     }
 
@@ -96,11 +98,12 @@ export const ArticleContextProvider:React.FC<Props> = (props) => {
         setIsSuccess(true);
     }
 
-    const getUpdateArticleHancler = async (token:string, param:string) => {
+    const getUpdateArticleHandler = async (token:string, param:string) => {
         setIsGetUpdateSuccess(false);
         const updateData = await articleAction.getChangeArticle(token, param);
         const article:ArticleInfo = updateData?.data;
         setArticle(article);
+        console.log(article);
         setIsGetUpdateSuccess(true);
     }
 
@@ -138,7 +141,7 @@ export const ArticleContextProvider:React.FC<Props> = (props) => {
         getPageList: getPageHandlerV2,
         getArticle: getArticleHandler,
         createArticle: createArticleHandler,
-        getUpdateArticle: getUpdateArticleHancler,
+        getUpdateArticle: getUpdateArticleHandler,
         updateArticle: updateArticleHandler,
         deleteArticle: deleteArticleHandler
     }
@@ -146,7 +149,7 @@ export const ArticleContextProvider:React.FC<Props> = (props) => {
     return (
         <ArticleContext.Provider value={contextValue}>
             {props.children}
-            </ArticleContext.Provider>)
+        </ArticleContext.Provider>)
 }
 
 export default ArticleContext;
