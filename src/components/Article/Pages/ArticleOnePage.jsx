@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
-import ArticleOne from "../components/Article/ArticleOne";
-import Comment from "../components/Article/CommentList";
-import Recommend from "../components/Article/Recommend";
-import { ArticleContextProvider } from "../store/article-context";
-import { CommentContextProvider } from "../store/comment-context";
-import { RecommendContextProvider } from "../store/recommend-context";
+import ArticleOne from "../ArticleOne";
+import Comment from "../CommentList";
+import Recommend from "../Recommend";
+import { ArticleContextProvider } from "../Store/article-context";
+import { CommentContextProvider } from "../Store/comment-context";
+import { RecommendContextProvider } from "../Store/recommend-context";
 
 const ArticleOnePage = () => {
     let { articleId } = useParams();

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './signup.scss';
 import Swal from "sweetalert2";
 import axios from 'axios';
@@ -20,8 +20,14 @@ const Signup = () => {
         if (authCtx.isSuccess){
             navigate('/home',{replace: true});
         }
-
     };
+    useEffect(() => {
+        console.log(authCtx.isSuccess); // 상태가 변경될 때마다 동작 수행
+        if (authCtx.isSuccess){
+            navigate("/home",{replace: true});
+            authCtx.isSuccess = false;
+        }
+    }, [authCtx.isSuccess]);
     // const handleEmailVerification = () => {
     //     console.log('이메일 인증 요청');
     // }

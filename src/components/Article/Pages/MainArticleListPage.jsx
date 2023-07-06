@@ -1,16 +1,24 @@
-import { Fragment } from "react";
+import {Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ArticleContextProvider } from "./Store/article-context";
 
+import { ArticleContextProvider } from "../Store/article-context";
+import MainArticleList from "../MainArticleList"
+import Layout from "../../Layout/Layout";
 const MainArticleListPage = () => {
     let {pageId} = useParams();
+    const [key, setKey] = useState(pageId);
+    useEffect(()=>{
+        setKey(pageId);
+    },[pageId]);
     return(
-        <ArticleContextProvider>
-            <Fragment>
-                <ArticleList item={pageId}/>
-                <SearchForm />
-            </Fragment>
-        </ArticleContextProvider>
+        <Layout>
+            <h1>전체게시판</h1>
+            <ArticleContextProvider>
+                <Fragment>
+                    <MainArticleList key={key} item={pageId}/>
+                </Fragment>
+            </ArticleContextProvider>
+        </Layout>
     )
 }
 

@@ -1,12 +1,11 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import ArticleContext from "./Store/article-context";
-import Paging from './Paging';
+import Paging from "./Paging";
 import AuthContext from "../Signup/Store/auth-context";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootStrapTable from 'react-bootstrap-table-next';
 import { Button } from 'react-bootstrap';
-import classes from './ArticleList.module.css';
 
 const MainArticleList = (props) => {
     const navigate = useNavigate();
@@ -51,23 +50,22 @@ const MainArticleList = (props) => {
     const [AList, setAList] = useState([]);
     const [maxNum, setMaxNum] = useState(1);
     let isLogin = authCtx.isLoggedIn;
-    const fetchListHandler = useCallback( () => {
+    const fetchListHandler = () => {
         articleCtx.getPageList(pageId);
-    },[]);
+    };
 
     useEffect(()=>{
         fetchListHandler();
-    }, [fetchListHandler()]);
+    }, []);
 
     useEffect(() =>{
         if(articleCtx.isSuccess){
             setAList(articleCtx.page);
-            console.log(AList);
             setMaxNum(articleCtx.totalPages);
         }
     }, [articleCtx])
     return(
-        <div className={classes.list}>
+        <div>
             <BootStrapTable keyField='id' data = { AList } columns={ columns } />
             <div>{isLogin &&
                 <Link to="/create">
@@ -75,7 +73,11 @@ const MainArticleList = (props) => {
                 </Link>
             }
             </div>
-            <Paging currentPage={Number(pageId)} maxPage={maxNum}/>
+            <div style={{ display: 'flex', justifyContent: 'center' }} >
+                <Paging currentPage={Number(pageId)} maxPage={maxNum}/>
+            </div>
+
         </div>
     )
 }
+export default MainArticleList;

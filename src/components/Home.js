@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
 import Layout from "./Layout/Layout";
 import AuthContext from "./Signup/Store/auth-context.tsx";
-import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+
 
 const Home = () => {
     const authCtx = useContext(AuthContext);
@@ -27,8 +28,12 @@ const Home = () => {
 
     return (
         <Layout>{isLogin && (
-            <h2>hi {nickname} </h2>
+            <h2>진짜하네 ㅋㅋ <br/>hi {nickname} </h2>
         )}
+            {!isLogin &&(
+                <h2>회원가입 및 로그인을 해주세요</h2>
+            )}
+        
         </Layout>
     )
 }

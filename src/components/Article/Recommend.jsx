@@ -4,16 +4,11 @@ import EmptyHeart from './images/black_heart.png';
 import Heart from './images/red_heart.png';
 import AuthContext from "../Signup/Store/auth-context";
 import RecommendContext from "./Store/recommend-context";
-type Props = { item:string | undefined }
-type Recommends = {
-    recommendNum: number
-    recommended: boolean
-}
-const Recommend:React.FC<Props> = (props) => {
+const Recommend = (props) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const [recommends, setRecommends] = useState<Recommends>();
+    const [recommends, setRecommends] = useState();
 
     const authCtx = useContext(AuthContext);
     const recommendCtx = useContext(RecommendContext);
@@ -65,7 +60,7 @@ const Recommend:React.FC<Props> = (props) => {
 
     const heartImage = (heart) => {
         return (
-            <img alt="heart" src={heart} onClick={changeRecommend}/>
+            <img style={{width:'40px', marginRight: '10px'}} alt="heart" src={heart} onClick={changeRecommend}/>
         )
     }
 
@@ -73,9 +68,9 @@ const Recommend:React.FC<Props> = (props) => {
 
     if (isLoading && recommends) {
         media = (
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
                 {recommends.recommended ? heartImage(Heart) : heartImage(EmptyHeart)}
-                <h4>좋아요 숫자 {recommends.recommendNum}</h4>
+                <h4>좋아요 {recommends.recommendNum}</h4>
             </div>
         )
     }
