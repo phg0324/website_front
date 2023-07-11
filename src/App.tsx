@@ -12,7 +12,6 @@ import ArticleOnePage from "./components/Article/Pages/ArticleOnePage";
 import CreateArticlePage from "./components/Article/Pages/CreateArticlePage";
 import AuthContext from "./components/Signup/Store/auth-context";
 import UpdateArticlePage from "./components/Article/Pages/UpdateArticlePage";
-import FreeArticleListPage from "./components/Article/Pages/FreeArticleListPage";
 import {useContext} from "react";
 function App() {
     const authCtx = useContext(AuthContext);
@@ -26,11 +25,10 @@ function App() {
           <Route path="/changenickname/" element={<ChangeNickname />}/>
           <Route path="/changepassword/" element={<ChangePassword />}/>
 
-            <Route path="/page/:pageId" element={<MainArticleListPage/>}/>
+            <Route path="/page/:pageType/:pageId/:pageSort" element={<MainArticleListPage/>}/>
             <Route path="/article/:articleId" element={<ArticleOnePage />} />
             <Route path="/create" element={authCtx.isLoggedIn ? <CreateArticlePage /> : <Navigate to='/home' />} />
             <Route path="/update/:articleId" element={authCtx.isLoggedIn ? <UpdateArticlePage /> : <Navigate to='/home' />} />
-            <Route path="/freepage/:pageId" element ={<FreeArticleListPage/>}/>
 
 
         </Routes>

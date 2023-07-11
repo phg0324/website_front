@@ -41,11 +41,26 @@ const Header = () => {
             navigate('/changepassword')
         }
     }
+    function selectArticle(eventKey){
+        if (eventKey === "mainPage"){
+            navigate('/page/전체/1/id');
+        }
+        if (eventKey === "freePage"){
+            navigate('/page/자유/1/id');
+        }
+        if (eventKey === "humorPage"){
+            navigate('/page/유머/1/id');
+        }
+    }
     return (
         <header className="header">
             <h1 className="header_title" onClick={toHome}>대충 개쩌는 웹페이지</h1>
-            <button onClick={toMainPage}>전체 게시판</button>
-            <button onClick={toFreePage}>자유 게시판</button>
+
+            <DropdownButton className="d-flex" title="게시판" onSelect={selectArticle}>
+                <Dropdown.Item  eventKey="mainPage">전체 게시판</Dropdown.Item>
+                <Dropdown.Item eventKey="freePage">자유 게시판</Dropdown.Item>
+                <Dropdown.Item eventKey="humorPage">유머 게시판</Dropdown.Item>
+            </DropdownButton>
             <div className="header_actions">
                 {!isLogin && (
                     <>

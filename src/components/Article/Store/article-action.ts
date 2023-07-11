@@ -15,9 +15,9 @@ const createTokenHeader = (token:string) => {
     }
 }
 
-export const getPageList = (param) => {
-    const URL = '/article/page?page=' + param;
-    console.log(param)
+export const getPageList = (param1, param2, param3) => {
+    const URL = '/article/page?page=' + param1 +'&type='+param2 +'&sort='+param3;
+    console.log(param1,param2);
     const response = GET(URL, {});
     return response;
 }

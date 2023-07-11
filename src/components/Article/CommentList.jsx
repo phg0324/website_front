@@ -60,15 +60,20 @@ const CommentList = (props) => {
             media = (<ul>
                 {
                     comments.map((comment) => {
-                        return <Comment
-                            key={comment.commentId}
-                            commentId={comment.commentId}
-                            memberNickname={comment.memberNickname}
-                            commentBody={comment.commentBody}
-                            createdAt={comment.createdAt.toString()}
-                            written={comment.written}
-                            onDelete={deleteComment}
-                        />}
+                        return (<div>
+                                <Comment
+                                    key={comment.commentId}
+                                    commentId={comment.commentId}
+                                    memberNickname={comment.memberNickname}
+                                    commentBody={comment.commentBody}
+                                    createdAt={comment.createdAt.toString()}
+                                    written={comment.written}
+                                    onDelete={deleteComment}
+                                />
+                                <br/>
+                            </div>
+
+                        )}
                     )
                 }
             </ul>)

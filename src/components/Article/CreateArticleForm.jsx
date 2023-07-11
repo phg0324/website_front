@@ -16,7 +16,7 @@ const CreateArticleForm = (props) => {
     const authCtx = useContext(AuthContext);
     const [title, setTitle] =useState('');
     const [main, setMain] =useState(EditorState.createEmpty());
-    const [type, setType] = useState('');
+    const [type, setType] = useState("자유");
     const [saveTitle, setSaveTitle] =useState('');
     const [saveMain, setSaveMain] =useState(EditorState.createEmpty());
     const [saveType, setSaveType] = useState('');
@@ -44,7 +44,7 @@ const CreateArticleForm = (props) => {
             const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
             const editorState = EditorState.createWithContent(contentState);
             setMain(editorState);
-
+            console.log("???")
             setTitle(articleCtx.article.articleTitle);
             setType(articleCtx.article.articleType);
 
@@ -58,7 +58,7 @@ const CreateArticleForm = (props) => {
         if (props.item) {
             articleCtx.getUpdateArticle(authCtx.token, props.item);
         }
-    }, [props.item])
+    }, [])
 
     useEffect(() => {
         console.log('update effect')
@@ -92,8 +92,8 @@ const CreateArticleForm = (props) => {
     border-radius: 2px !important;
   }
 `;
-    const changeMain =(main) => {
-        setMain(main);
+    const changeMain = (editorState) => {
+        setMain(editorState);
     }
     const types =[
         {value: "free", name: "자유"},

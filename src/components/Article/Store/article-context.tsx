@@ -26,7 +26,7 @@ interface Ctx {
     isSuccess: boolean;
     isGetUpdateSuccess: boolean;
     totalPages: number;
-    getPageList: (pageId: string) => void;
+    getPageList: (pageId: string, pageType: string, sorting: string) => void;
     getArticle: (param:string, token?:string) => void;
     createArticle: (article:PostArticle, token:string) => void;
     getUpdateArticle: (token:string, param:string) => void;
@@ -59,9 +59,9 @@ export const ArticleContextProvider:React.FC<Props> = (props) => {
     const [isGetUpdateSuccess, setIsGetUpdateSuccess] = useState<boolean>(false);
 
 
-    const getPageHandlerV2 = async (pageId: string) => {
+    const getPageHandlerV2 = async (pageId: string,pageType: string, sorting: string) => {
         setIsSuccess(false);
-        const data = await articleAction.getPageList(pageId);
+        const data = await articleAction.getPageList(pageId, pageType, sorting);
         const page:ArticleInfo[] = data?.data.content;
         const pages:number = data?.data.totalPages;
         setPage(page);
