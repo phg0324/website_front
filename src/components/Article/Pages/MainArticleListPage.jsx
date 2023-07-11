@@ -5,7 +5,7 @@ import { ArticleContextProvider } from "../Store/article-context";
 import MainArticleList from "../MainArticleList"
 import Layout from "../../Layout/Layout";
 const MainArticleListPage = () => {
-    let {pageId} = useParams();
+    let {pageId, pageType, pageSort} = useParams();
     const [key, setKey] = useState(pageId);
     useEffect(()=>{
         setKey(pageId);
@@ -15,7 +15,7 @@ const MainArticleListPage = () => {
             <h1>전체게시판</h1>
             <ArticleContextProvider>
                 <Fragment>
-                    <MainArticleList key={key} item={pageId}/>
+                    <MainArticleList key={key} item={pageId} type={pageType} sort={pageSort}/>
                 </Fragment>
             </ArticleContextProvider>
         </Layout>
